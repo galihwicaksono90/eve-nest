@@ -46,7 +46,6 @@ export function getConfig({ emailService }: GetConfig) {
       modelName: 'users',
       fields: {
         name: 'firstName',
-        emailVerified: 'isEmailVerified',
       },
       additionalFields: {
         lastName: {
@@ -76,7 +75,7 @@ export function getConfig({ emailService }: GetConfig) {
     },
     advanced: {
       database: {
-        generateId: 'uuid',
+        generateId: () => uuid(),
       },
       cookiePrefix: 'TmVzdEpTIEJvaWxlcnBsYXRl',
     },

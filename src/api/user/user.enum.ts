@@ -1,1 +1,5 @@
-export const RoleTypes = ['User', 'Admin', 'Stylist'] as const;
+export enum RoleEnum {
+  ADMIN = 'admin',
+  USER = 'user',
+  STYLIST = 'stylist',
+}

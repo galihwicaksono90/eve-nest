@@ -1,23 +1,23 @@
-// src/auth/account.entity.ts
 import { User } from '@/api/user/user.entity';
 import {
   Table,
   Column,
   Model,
+  PrimaryKey,
   DataType,
   ForeignKey,
   BelongsTo,
   IsUUID,
-  AllowNull,
-  PrimaryKey,
   Default,
+  AllowNull,
 } from 'sequelize-typescript';
 
+// Session Entity
 @Table({
-  tableName: 'accounts',
+  tableName: 'sessions',
   timestamps: true,
 })
-export class Account extends Model {
+export class Session extends Model {
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @IsUUID(4)
@@ -31,39 +31,24 @@ export class Account extends Model {
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  accountId!: string;
+  token!: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  providerId!: string;
-
-  @AllowNull(true)
-  @Column(DataType.TEXT)
-  accessToken?: string;
-
-  @AllowNull(true)
-  @Column(DataType.TEXT)
-  refreshToken?: string;
-
-  @AllowNull(true)
   @Column(DataType.DATE)
-  accessTokenExpiresAt?: Date;
-
-  @AllowNull(true)
-  @Column(DataType.DATE)
-  refreshTokenExpiresAt?: Date;
+  expiresAt!: Date;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  scope?: string;
+  ipAddress?: string;
 
   @AllowNull(true)
   @Column(DataType.TEXT)
-  idToken?: string;
+  userAgent?: string;
 
+  // Admin plugin field for impersonation
   @AllowNull(true)
   @Column(DataType.STRING)
-  password?: string;
+  impersonatedBy?: string;
 
   // Associations
   @BelongsTo(() => User)

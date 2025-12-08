@@ -23,9 +23,9 @@ import { AuthModule } from '@/auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 
 import { env } from '@/utils/config';
-import { UserService } from '@/api/user/user.service';
 import { EmailService } from '@/shared/email/email.service';
 import { EmailModule } from '@/shared/email/email.module';
+import { UserModule } from './api/user/user.module';
 
 @Catch(HttpException)
 class HttpExceptionFilter extends BaseExceptionFilter {
@@ -63,11 +63,11 @@ class HttpExceptionFilter extends BaseExceptionFilter {
 
     AuthModule,
     EmailModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    UserService,
     {
       provide: APP_PIPE,
       useClass: ZodValidationPipe,
