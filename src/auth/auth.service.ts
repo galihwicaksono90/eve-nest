@@ -2,7 +2,7 @@ import { User } from '@/api/user/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { AuthService as BetterAuthService } from '@thallesp/nestjs-better-auth';
-import { CreateUserSchema } from './dto/signup.dto';
+import { SignUpEmailSchema } from './dto/sign-up-email.dto';
 import { Auth } from './better-auth.config';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AuthService {
     private auth: BetterAuthService<Auth>,
   ) {}
 
-  async create(body: CreateUserSchema) {
+  async signUpEmail(body: SignUpEmailSchema) {
     const result = await this.auth.api.signUpEmail({
       body,
     });

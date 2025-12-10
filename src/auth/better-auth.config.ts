@@ -79,13 +79,16 @@ export function getConfig({ emailService }: GetConfig) {
       },
       cookiePrefix: 'TmVzdEpTIEJvaWxlcnBsYXRl',
     },
+    disabledPaths: ['/sign-up/email'],
     socialProviders: {
       google: {
         clientId: env.GOOGLE_CLIENT_ID,
         clientSecret: env.GOOGLE_CLIENT_SECRET,
         mapProfileToUser: (profile) => {
+          console.log({ profile });
           return {
-            name: profile.given_name,
+            name: profile.name,
+            firstName: profile.given_name,
             lastName: profile.family_name,
           };
         },

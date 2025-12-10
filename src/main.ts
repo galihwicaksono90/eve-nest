@@ -11,11 +11,14 @@ async function bootstrap() {
     bodyParser: false,
   });
 
+  app.setGlobalPrefix('api', {
+    exclude: ['/auth'],
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Eve')
     .setDescription('Eve Salon')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
   const documentFactory = SwaggerModule.createDocument(app, config);
 
